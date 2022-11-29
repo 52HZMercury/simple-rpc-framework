@@ -3,8 +3,7 @@ package github.javaguide.compress;
 import github.javaguide.extension.SPI;
 
 /**
- * @author wangtao .
- * @createTime on 2020/10/3
+ * 压缩类的接口
  */
 
 @SPI

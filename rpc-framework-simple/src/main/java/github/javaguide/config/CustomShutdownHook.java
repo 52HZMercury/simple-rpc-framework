@@ -11,9 +11,7 @@ import java.net.UnknownHostException;
 
 /**
  * When the server  is closed, do something such as unregister all services
- *
- * @author shuang.kou
- * @createTime 2020年06月04日 13:11:00
+ * 当服务器关机的的时候，注销所有的服务
  */
 @Slf4j
 public class CustomShutdownHook {

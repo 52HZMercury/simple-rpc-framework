@@ -4,25 +4,24 @@ import github.javaguide.config.RpcServiceConfig;
 
 /**
  * store and provide service object.
- *
- * @author shuang.kou
- * @createTime 2020年05月31日 16:52:00
- */
+ * 提供服务的接口
+ * */
 public interface ServiceProvider {
 
     /**
-     * @param rpcServiceConfig rpc service related attributes
+     * @param rpcServiceConfig rpc 服务相关的属性
+     *
      */
     void addService(RpcServiceConfig rpcServiceConfig);
 
     /**
-     * @param rpcServiceName rpc service name
+     * @param rpcServiceName rpc 服务的名字
      * @return service object
      */
     Object getService(String rpcServiceName);
 
     /**
-     * @param rpcServiceConfig rpc service related attributes
+     * @param rpcServiceConfig rpc 服务相关的属性
      */
     void publishService(RpcServiceConfig rpcServiceConfig);
 

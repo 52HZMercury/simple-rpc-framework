@@ -16,8 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * refer to dubbo consistent hash load balance: https://github.com/apache/dubbo/blob/2d9583adf26a2d8bd6fb646243a9fe80a77e65d5/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/ConsistentHashLoadBalance.java
  * 这里是使用的dubbo的负载均衡的选择
- * @author RicardoZ
- * @createTime 2020年10月20日 18:15:20
  */
 @Slf4j
 public class ConsistentHashLoadBalance extends AbstractLoadBalance {
@@ -27,9 +25,11 @@ public class ConsistentHashLoadBalance extends AbstractLoadBalance {
     protected String doSelect(List<String> serviceAddresses, RpcRequest rpcRequest) {
         int identityHashCode = System.identityHashCode(serviceAddresses);
         // build rpc service name by rpcRequest
+        // 根据rpc请求构建rpc服务的名字
         String rpcServiceName = rpcRequest.getRpcServiceName();
         ConsistentHashSelector selector = selectors.get(rpcServiceName);
         // check for updates
+        // 检查更新
         if (selector == null || selector.identityHashCode != identityHashCode) {
             selectors.put(rpcServiceName, new ConsistentHashSelector(serviceAddresses, 160, identityHashCode));
             selector = selectors.get(rpcServiceName);

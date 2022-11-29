@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @author shuang.kou
- * @createTime 2020年07月21日 20:23:00
- **/
+
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,11 +22,13 @@ public class RpcServiceConfig {
     private String version = "";
     /**
      * when the interface has multiple implementation classes, distinguish by group
+     * 当接口有多个实现类时，按组区分
      */
     private String group = "";
 
     /**
      * target service
+     * 目标服务
      */
     private Object service;
 

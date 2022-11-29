@@ -9,8 +9,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * @author wangtao .
- * @createTime on 2020/10/3
+ * 压缩类
  */
 
 public class GzipCompress implements Compress {
@@ -18,6 +17,7 @@ public class GzipCompress implements Compress {
 
     private static final int BUFFER_SIZE = 1024 * 4;
 
+    //压缩
     @Override
     public byte[] compress(byte[] bytes) {
         if (bytes == null) {
@@ -34,6 +34,7 @@ public class GzipCompress implements Compress {
         }
     }
 
+    //解压缩
     @Override
     public byte[] decompress(byte[] bytes) {
         if (bytes == null) {

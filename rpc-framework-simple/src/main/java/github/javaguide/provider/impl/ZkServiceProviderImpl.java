@@ -17,15 +17,14 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author shuang.kou
- * @createTime 2020年05月13日 11:23:00
- */
+ * 看名字就知道是zk中的provider
+ * */
 @Slf4j
 public class ZkServiceProviderImpl implements ServiceProvider {
 
     /**
-     * key: rpc service name(interface name + version + group)
-     * value: service object
+     * key: rpc 服务的名字(interface name + version + group)
+     * value: 服务对象
      */
     private final Map<String, Object> serviceMap;
     private final Set<String> registeredService;
@@ -48,6 +47,7 @@ public class ZkServiceProviderImpl implements ServiceProvider {
         log.info("Add service: {} and interfaces:{}", rpcServiceName, rpcServiceConfig.getService().getClass().getInterfaces());
     }
 
+    //根据名字获取服务
     @Override
     public Object getService(String rpcServiceName) {
         Object service = serviceMap.get(rpcServiceName);

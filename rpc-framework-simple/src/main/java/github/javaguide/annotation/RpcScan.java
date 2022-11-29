@@ -11,9 +11,7 @@ import java.lang.annotation.Target;
 
 /**
  * scan custom annotations
- *
- * @author shuang.kou
- * @createTime 2020年08月10日 21:42:00
+ * 用来扫描自定义注解
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
