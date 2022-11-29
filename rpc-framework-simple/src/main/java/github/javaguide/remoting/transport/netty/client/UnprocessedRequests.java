@@ -9,8 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 用于存放未被处理的请求
  *
- * @author shuang.kou
- * @createTime 2020年06月04日 17:30:00
  */
 public class UnprocessedRequests {
     private static final Map<String, CompletableFuture<RpcResponse<Object>>> UNPROCESSED_RESPONSE_FUTURES = new ConcurrentHashMap<>();

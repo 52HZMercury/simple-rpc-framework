@@ -11,10 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * RpcRequest processor
+ * RpcRequest 处理器
  *
- * @author shuang.kou
- * @createTime 2020年05月13日 09:05:00
  */
 @Slf4j
 public class RpcRequestHandler {
@@ -25,7 +23,7 @@ public class RpcRequestHandler {
     }
 
     /**
-     * Processing rpcRequest: call the corresponding method, and then return the method
+     * 处理rpcRequest: 调用相应的方法，然后返回方法
      */
     public Object handle(RpcRequest rpcRequest) {
         Object service = serviceProvider.getService(rpcRequest.getRpcServiceName());
@@ -33,11 +31,11 @@ public class RpcRequestHandler {
     }
 
     /**
-     * get method execution results
+     * 获取方法执行结果
      *
      * @param rpcRequest client request
      * @param service    service object
-     * @return the result of the target method execution
+     * @return 目标方法执行结果
      */
     private Object invokeTargetMethod(RpcRequest rpcRequest, Object service) {
         Object result;

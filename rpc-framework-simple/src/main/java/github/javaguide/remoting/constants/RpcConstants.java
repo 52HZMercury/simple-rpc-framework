@@ -4,18 +4,17 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author wangtao .
- * @createTime on 2020/10/2
  */
 public class RpcConstants {
 
 
     /**
      * Magic number. Verify RpcMessage
+     * 魔数 确认RPC信息
      */
     public static final byte[] MAGIC_NUMBER = {(byte) 'g', (byte) 'r', (byte) 'p', (byte) 'c'};
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
-    //version information
+    //版本信息
     public static final byte VERSION = 1;
     public static final byte TOTAL_LENGTH = 16;
     public static final byte REQUEST_TYPE = 1;

@@ -8,10 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @author wangtao
- * @createTime 2020年10月2日 12:33
- */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

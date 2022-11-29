@@ -62,6 +62,7 @@ public final class NettyRpcClient implements RpcRequestTransport {
                          */
                         ChannelPipeline p = ch.pipeline();
                         // If no data is sent to the server within 15 seconds, a heartbeat request is sent
+                        // 如果15秒内没有信息发送，那么会发送一次心跳请求
                         p.addLast(new IdleStateHandler(0, 5, 0, TimeUnit.SECONDS));
                         p.addLast(new RpcMessageEncoder());
                         p.addLast(new RpcMessageDecoder());
@@ -74,7 +75,7 @@ public final class NettyRpcClient implements RpcRequestTransport {
     }
 
     /**
-     *用于连接服务端
+     * 用于连接服务端
      * @param inetSocketAddress
      * @return
      */
@@ -83,7 +84,7 @@ public final class NettyRpcClient implements RpcRequestTransport {
         CompletableFuture<Channel> completableFuture = new CompletableFuture<>();
         bootstrap.connect(inetSocketAddress).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                log.info("客户端已经连接成功The client has connected [{}] successful!", inetSocketAddress.toString());
+                log.info("客户端已经连接 [{}] 成功", inetSocketAddress.toString());
                 completableFuture.complete(future.channel());
             } else {
                 throw new IllegalStateException();

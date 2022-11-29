@@ -26,7 +26,6 @@ public class ChannelProvider {
 
     public Channel get(InetSocketAddress inetSocketAddress) {
         String key = inetSocketAddress.toString();
-        // determine if there is a connection for the corresponding address
         // 确定相应地址是否有连接
         if (channelMap.containsKey(key)) {
             Channel channel = channelMap.get(key);

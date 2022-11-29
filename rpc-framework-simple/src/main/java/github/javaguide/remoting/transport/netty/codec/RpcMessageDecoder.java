@@ -39,9 +39,9 @@ import java.util.Arrays;
 @Slf4j
 public class RpcMessageDecoder extends LengthFieldBasedFrameDecoder {
     public RpcMessageDecoder() {
-        // lengthFieldOffset: magic code is 4B, and version is 1B, and then full length. so value is 5
-        // lengthFieldLength: full length is 4B. so value is 4
-        // lengthAdjustment: full length include all data and read 9 bytes before, so the left length is (fullLength-9). so values is -9
+        // lengthFieldOffset: 魔数 4B, version 1B,  full length. so value is 5
+        // lengthFieldLength: full length  4B. 所以value  4
+        // lengthAdjustment: full length 包括所有数据 and read 9 bytes before, so the left length is (fullLength-9). so values is -9
         // initialBytesToStrip: we will check magic code and version manually, so do not strip any bytes. so values is 0
         this(RpcConstants.MAX_FRAME_LENGTH, 5, 4, -9, 0);
     }
@@ -111,12 +111,12 @@ public class RpcMessageDecoder extends LengthFieldBasedFrameDecoder {
         if (bodyLength > 0) {
             byte[] bs = new byte[bodyLength];
             in.readBytes(bs);
-            // decompress the bytes
+            // 解压 bytes
             String compressName = CompressTypeEnum.getName(compressType);
             Compress compress = ExtensionLoader.getExtensionLoader(Compress.class)
                     .getExtension(compressName);
             bs = compress.decompress(bs);
-            // deserialize the object
+            // 反序列化对象
             String codecName = SerializationTypeEnum.getName(rpcMessage.getCodec());
             log.info("codec name: [{}] ", codecName);
             Serializer serializer = ExtensionLoader.getExtensionLoader(Serializer.class)

@@ -83,7 +83,7 @@ public class NettyRpcClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     /**
-     * Called when an exception occurs in processing a client message
+     * 在处理客户信息时发生异常时唤醒
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {

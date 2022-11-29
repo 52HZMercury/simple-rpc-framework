@@ -66,7 +66,7 @@ public class NettyRpcServerHandler extends ChannelInboundHandlerAdapter {
                 ctx.writeAndFlush(rpcMessage).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
             }
         } finally {
-            //Ensure that ByteBuf is released, otherwise there may be memory leaks
+            //确保ByteBuf被释放，否则 可能会有内存泄露
             ReferenceCountUtil.release(msg);
         }
     }
