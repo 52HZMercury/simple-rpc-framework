@@ -20,8 +20,8 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * 动态代理类
- * When a dynamic proxy object calls a method, it actually calls the following invoke method.
- * It is precisely because of the dynamic proxy that the remote method called by the client is like calling the local method (the intermediate process is shielded)
+ * 动态代理对象调用方法的时候，实际上是在调用invoke方法
+ * 正是由于动态代理，客户端调用的远程方法就像调用本地方法（中间进程被屏蔽）
  *
  */
 @Slf4j
@@ -30,7 +30,7 @@ public class RpcClientProxy implements InvocationHandler {
     private static final String INTERFACE_NAME = "interfaceName";
 
     /**
-     * Used to send requests to the server.And there are two implementations: socket and netty
+     * 用于向服务器发送请求。有两种实现：socket和netty
      */
     private final RpcRequestTransport rpcRequestTransport;
     private final RpcServiceConfig rpcServiceConfig;
@@ -47,7 +47,7 @@ public class RpcClientProxy implements InvocationHandler {
     }
 
     /**
-     * get the proxy object
+     * 获取代理对象
      */
     @SuppressWarnings("unchecked")
     public <T> T getProxy(Class<T> clazz) {
@@ -56,9 +56,8 @@ public class RpcClientProxy implements InvocationHandler {
 
     /**
      * 当你使用代理对象去调用方法的时候，实际上就是调用的这个方法
-     * This method is actually called when you use a proxy object to call a method.
-     * The proxy object is the object you get through the getProxy method.
-     * 代理对象就是你通过代理方法那里获取的那个对象
+     *
+     * 代理对象是通过getProxy方法获得的对象。
      */
     @SneakyThrows
     @SuppressWarnings("unchecked")

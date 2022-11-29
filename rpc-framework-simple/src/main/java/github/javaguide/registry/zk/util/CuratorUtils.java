@@ -63,7 +63,7 @@ public final class CuratorUtils {
 
     /**
      * Gets the children under a node
-     *
+     * 获取子节点
      * @param rpcServiceName rpc service name eg:github.javaguide.HelloServicetest2version1
      * @return All child nodes under the specified node
      */
@@ -78,13 +78,14 @@ public final class CuratorUtils {
             SERVICE_ADDRESS_MAP.put(rpcServiceName, result);
             registerWatcher(rpcServiceName, zkClient);
         } catch (Exception e) {
-            log.error("get children nodes for path [{}] fail", servicePath);
+            log.error("从 [{}]获取子节点失败", servicePath);
         }
         return result;
     }
 
     /**
-     * Empty the registry of data
+     *
+     * 清空注册数据信息
      */
     public static void clearRegistry(CuratorFramework zkClient, InetSocketAddress inetSocketAddress) {
         REGISTERED_PATH_SET.stream().parallel().forEach(p -> {
@@ -100,23 +101,23 @@ public final class CuratorUtils {
     }
 
     public static CuratorFramework getZkClient() {
-        // check if user has set zk address
+        // 检查用户是否设置了zk地址
         Properties properties = PropertiesFileUtil.readPropertiesFile(RpcConfigEnum.RPC_CONFIG_PATH.getPropertyValue());
         String zookeeperAddress = properties != null && properties.getProperty(RpcConfigEnum.ZK_ADDRESS.getPropertyValue()) != null ? properties.getProperty(RpcConfigEnum.ZK_ADDRESS.getPropertyValue()) : DEFAULT_ZOOKEEPER_ADDRESS;
-        // if zkClient has been started, return directly
+        // 如果zk客户端已经启动了，立即返回
         if (zkClient != null && zkClient.getState() == CuratorFrameworkState.STARTED) {
             return zkClient;
         }
-        // Retry strategy. Retry 3 times, and will increase the sleep time between retries.
+        // 重试策略。重试 3 次，并且会增加重试之间的时间。
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(BASE_SLEEP_TIME, MAX_RETRIES);
         zkClient = CuratorFrameworkFactory.builder()
-                // the server to connect to (can be a server list)
+                // 要连接到的服务器（可以是服务器列表）
                 .connectString(zookeeperAddress)
                 .retryPolicy(retryPolicy)
                 .build();
         zkClient.start();
         try {
-            // wait 30s until connect to the zookeeper
+            // 等待30秒再连接zk
             if (!zkClient.blockUntilConnected(30, TimeUnit.SECONDS)) {
                 throw new RuntimeException("Time out waiting to connect to ZK!");
             }
