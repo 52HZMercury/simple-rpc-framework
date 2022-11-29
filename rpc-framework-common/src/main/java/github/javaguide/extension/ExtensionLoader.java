@@ -77,6 +77,7 @@ public final class ExtensionLoader<T> {
 
     private T createExtension(String name) {
         // load all extension classes of type T from file and get specific one by name
+        // 通过名字加载所有的插件
         Class<?> clazz = getExtensionClasses().get(name);
         if (clazz == null) {
             throw new RuntimeException("No such extension of name " + name);
@@ -97,6 +98,7 @@ public final class ExtensionLoader<T> {
         // get the loaded extension class from the cache
         Map<String, Class<?>> classes = cachedClasses.get();
         // double check
+        //双重检测
         if (classes == null) {
             synchronized (cachedClasses) {
                 classes = cachedClasses.get();
@@ -131,9 +133,10 @@ public final class ExtensionLoader<T> {
     private void loadResource(Map<String, Class<?>> extensionClasses, ClassLoader classLoader, URL resourceUrl) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceUrl.openStream(), UTF_8))) {
             String line;
-            // read every line
+            // 循环遍历每一行
             while ((line = reader.readLine()) != null) {
                 // get index of comment
+                // 获得下标
                 final int ci = line.indexOf('#');
                 if (ci >= 0) {
                     // string after # is comment so we ignore it

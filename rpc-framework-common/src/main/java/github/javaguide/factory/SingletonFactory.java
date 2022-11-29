@@ -7,9 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 获取单例对象的工厂类
  *
- * @author shuang.kou
- * @createTime 2020年06月03日 15:04:00
- */
+*/
 public final class SingletonFactory {
     private static final Map<String, Object> OBJECT_MAP = new ConcurrentHashMap<>();
 
