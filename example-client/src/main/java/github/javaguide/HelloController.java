@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 一个客户端的示例
+ * 服务消费端
  */
 @Component
 public class HelloController {
@@ -13,12 +14,12 @@ public class HelloController {
     private HelloService helloService;
 
     public void test() throws InterruptedException {
-        String hello = this.helloService.hello(new Hello("111", "222"));
+        String hello = this.helloService.hello(new Hello("william", "nb"));
         //如需使用 assert 断言，需要在 VM options 添加参数：-ea
         assert "Hello description is 222".equals(hello);
         Thread.sleep(12000);
         for (int i = 0; i < 10; i++) {
-            System.out.println(helloService.hello(new Hello("111", "222")));
+            System.out.println(helloService.hello(new Hello("mercury", "notNb")));
         }
     }
 }
